@@ -72,63 +72,68 @@ namespace MovieProject
         //ta bort en lagrad film
         public void DeleteSeenMovie(int delete)
         {
-            List<string> ReadFile = File.ReadAllLines(filePath).ToList();
 
-            //radera på angivet ID/Index
-            ReadFile.RemoveAt(delete);
-            Console.WriteLine($"Film med ID nr:[{delete}] är raderad");
-            //ersätt den gamla txt-filen med den uppdaterad
-            File.WriteAllLines(filePath, ReadFile);
+            //kontroll om filen existerar eller inte.
 
-            //Rensa konsolen efter fyra sekunder.
-            System.Threading.Thread.Sleep(4000);
-            Console.Clear();
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("Finns ännu inga lagrade filmer.");
+            } else
+            {
+                List<string> ReadFile = File.ReadAllLines(filePath).ToList();
+
+                //radera på angivet ID/Index
+                ReadFile.RemoveAt(delete);
+                Console.WriteLine($"Film med ID nr:[{delete}] är raderad");
+                //ersätt den gamla txt-filen med den uppdaterad
+                File.WriteAllLines(filePath, ReadFile);
+
+                //Rensa konsolen efter fyra sekunder.
+                System.Threading.Thread.Sleep(4000);
+                Console.Clear();
+            }
+
         }
 
         //sök efter en film, söker egentligen i hela dokumentet efter matchningar så blir brett. 
         public void SearchForSeenMovie(string searchPhrase)
         {
-            var testWasTrue = false;
 
-            List<string> ReadFile = File.ReadAllLines(filePath).ToList();
-
-            //skapa en ny lista som ska vara filtrerad
-            var filterd = new List<string>();
-            //loopa igenom den första listan med alla filmer
-            foreach(var movie in ReadFile){
-                if (movie.Contains(searchPhrase))
-                {
-                    //om listan innehåller något med sökfrasen, addera den till den nya listan 
-                    filterd.Add(movie);
-                    //skriv ut den nya listan i konsolen
-                    Console.WriteLine("Resultat: " + string.Join(",", filterd) +"\n");
-                    Console.WriteLine("Inget resultat eller för många? skriv något utförligare.");
-                    testWasTrue = true;
-                }
-
-            } 
-            if(!testWasTrue)
+            //kontroll om filen existerar eller inte.
+            if (!File.Exists(filePath))
             {
-                Console.WriteLine("Inget resultat, kontrollera stor/liten bokstav.");
+                Console.WriteLine("Finns ännu inga lagrade filmer.");
             }
+            else
+            {
+                //för att kunna stoppa foreachloopen och endast skriva ut ett felmeddelande.
+                var testWasTrue = false;
 
+                List<string> ReadFile = File.ReadAllLines(filePath).ToList();
 
-            /*   
-             *   
-             List<string> ReadFile = File.ReadAllLines(filePath).ToList();
+                //skapa en ny lista som ska vara filtrerad
+                var filterd = new List<string>();
+                //loopa igenom den första listan med alla filmer
+                foreach (var movie in ReadFile)
+                {
+                    if (movie.Contains(searchPhrase))
+                    {
+                        //om listan innehåller något med sökfrasen, addera den till den nya listan 
+                        filterd.Add(movie);
+                        //skriv ut den nya listan i konsolen
+                        Console.WriteLine("Resultat: " + string.Join(",", filterd) + "\n");
+                        Console.WriteLine("Inget resultat eller för många? Gör en specifikare sökning.\n");
+                        testWasTrue = true;
+                        break;
+                    }
 
-            ReadFile.FindAll(searchPhrase);
-            var result = ReadFile.Any(stringToCheck => stringToCheck.Contains(searchPhrase));
-            Console.WriteLine($"Resultat: {0} {result}");
-            
-            var result = ReadFile.Any(stringToCheck => stringToCheck.Contains(searchPhrase));
-            Console.WriteLine($"Resultat: {result}");
-            
-
-
-           var result = ReadFile.Where(stringToCheck => stringToCheck.Contains(searchPhrase));
-             Console.WriteLine($"Resultat: {result}");*/
-
+                }
+                if (!testWasTrue)
+                {
+                    Console.WriteLine("Inget resultat, kontrollera stor/liten bokstav.");
+                }
+            }
+       
         }
 
     }

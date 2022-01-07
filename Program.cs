@@ -7,31 +7,36 @@ namespace MovieProject
         static void Main(string[] args)
         {
             //kalla på huvudmenyn
-            MainMenu();
-
-            //Hämta alternativ
-            var userInput = Console.ReadLine();
-            //Startmeny
-            while (true)
+            StartMenu();
+            static void StartMenu()
             {
-                switch(userInput)
+                MainMenu();
+                //Hämta alternativ
+                var userInput = Console.ReadLine();
+                //Startmeny
+                while (true)
                 {
-                    case "1":
-                        Console.Clear();
-                        AddSeenMovieController();
-                        break;
-                    case "2":
-                        Console.Clear();
-                        AddNewMovieController();
-                        break;
-                    case "x":
-                        ExitApp();
-                        break;
-               
+                    switch (userInput)
+                    {
+                        case "1":
+                            Console.Clear();
+                            AddSeenMovieController();
+                            break;
+                        case "2":
+                            Console.Clear();
+                            AddNewMovieController();
+                            break;
+                        case "x":
+                            ExitApp();
+                            break;
+
+                    }
+                    //om användaren skriver en siffra som inte finns med i switch
+                    Console.WriteLine("Välj alternativ 1-2");
+                    userInput = Console.ReadLine();
                 }
-                Console.WriteLine("Välj alternativ");
-                userInput = Console.ReadLine();
             }
+
 
             //funktion för att lägga till filmer som man sett
             static void AddSeenMovieController()
@@ -90,13 +95,15 @@ namespace MovieProject
                             break;
 
                         case "6":
-                            AddNewMovieController();
+                            StartMenu();
                             break;
                         //Stopppa applikationen
                         case "x":
                             ExitApp();
                             break;
                     }
+                    //om användaren skriver en siffra som inte finns med i switch
+                    Console.WriteLine("Välj alternativ 1-6");
                     userInputSeen = Console.ReadLine();
                 }
             }
@@ -141,14 +148,16 @@ namespace MovieProject
                             UserOptionsNew();
                             break;
                         case "6":
-                            Console.Clear();
-                            AddSeenMovieController();
+
+                            StartMenu();
                             break;
                         case "x":
                             ExitApp();
                             break;
                     }
-                     userInputNew = Console.ReadLine();
+                    //om användaren skriver en siffra som inte finns med i switch
+                    Console.WriteLine("Välj alternativ 1-6");
+                    userInputNew = Console.ReadLine();
                 }
             }
             //Huvudmeny
@@ -174,7 +183,7 @@ namespace MovieProject
                 Console.WriteLine("4.Radera film du sett efter index\n");
                 Console.WriteLine("5.Rensa konsolen\n");
 
-                Console.WriteLine("6. Gå till 'Sedda filmer' \n");
+                Console.WriteLine("6.Huvudmeny \n");
 
                 Console.WriteLine("x.Avsluta applikationen\n");
             }
@@ -193,7 +202,7 @@ namespace MovieProject
 
                 Console.WriteLine("5.Rensa konsolen\n");
 
-                Console.WriteLine("6.Gå till 'Filmer att se'\n");
+                Console.WriteLine("6.Huvudmeny\n");
 
                 Console.WriteLine("x. Avsluta applikationen\n ");
 

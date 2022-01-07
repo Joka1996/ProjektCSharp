@@ -73,36 +73,55 @@ namespace MovieProject
         //radera efter index 
         public void DeleteNewMovie(int delete)
         {
-            List<string> ReadFile = File.ReadAllLines(filePath).ToList();
-            ReadFile.RemoveAt(delete);
-            Console.WriteLine($"Film med ID nre:[{delete}] är raderad");
-            //ersätt den gamla txtfilen med ny
-            File.WriteAllLines(filePath, ReadFile);
+            //kontroll om filen existerar eller inte.
 
-            //Rensa konsolen efter fyra sekunder.
-            System.Threading.Thread.Sleep(4000);
-            Console.Clear();
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("Finns ännu inga lagrade filmer.");
+            }
+            else
+            {
+                List<string> ReadFile = File.ReadAllLines(filePath).ToList();
+                ReadFile.RemoveAt(delete);
+                Console.WriteLine($"Film med ID nre:[{delete}] är raderad");
+                //ersätt den gamla txtfilen med ny
+                File.WriteAllLines(filePath, ReadFile);
+
+                //Rensa konsolen efter fyra sekunder.
+                System.Threading.Thread.Sleep(4000);
+                Console.Clear();
+            }
+
         }
         //sök efter film
         public void SearchForNewMovie(string searchPhrase)
         {
-            // en simplare lösning för att söka
-            List<string> ReadFile = File.ReadAllLines(filePath).ToList();
-            var testWasTrue = false;
-            foreach(var movie in ReadFile)
+            //kontroll om filen existerar eller inte.
+            if(!File.Exists(filePath))
             {
-                if (movie.Contains(searchPhrase))
+                Console.WriteLine("Finns ännu inga lagrade filmer.");
+            } else
+            {
+                // en simplare lösning för att söka
+                List<string> ReadFile = File.ReadAllLines(filePath).ToList();
+                var testWasTrue = false;
+
+                foreach (var movie in ReadFile)
                 {
-                    Console.WriteLine($"{movie}");
-                    Console.WriteLine("Många träffar? Gör en specifikare sökning.\n");
-                    testWasTrue = true;
-                    break;
-                }      
+                    if (movie.Contains(searchPhrase))
+                    {
+                        Console.WriteLine($"Resultat: {movie}\n");
+                        Console.WriteLine("Inget resultat eller för många? Gör en specifikare sökning.\n");
+                        testWasTrue = true;
+                        break;
+                    }
+                }
+                if (!testWasTrue)
+                {
+                    Console.WriteLine("Inget resultat, kontrollera stor/liten bokstav.");
+                }
             }
-            if (!testWasTrue)
-            {
-                Console.WriteLine("Inget resultat, kontrollera stor/liten bokstav.");
-            }
+           
 
         }
 
