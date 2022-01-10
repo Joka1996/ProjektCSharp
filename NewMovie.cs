@@ -36,7 +36,7 @@ namespace MovieProject
                 // lägg till i txt filen. Appends används för att kunna addera nytt innehåll.
                 using(StreamWriter sw= File.AppendText(filePath))
                 {
-                    sw.WriteLine("Film: " + title + " - " + "IMDB: " + imdb  + "/10" + " - " + "Streamingtjänst: " + stream + "|");
+                    sw.WriteLine("Film: " + title + " - " + "IMDB: " + imdb  + "/10" + " - " + "Streamingtjänst: " + stream + " |");
                     sw.Close();
                 }
             }
@@ -50,11 +50,11 @@ namespace MovieProject
             //kontrollera om den sparade filen finns
             if (!File.Exists(filePath))
             {
-                Console.WriteLine("Det finns ännu inga filmer tillagda, lägg till en film du sett eller har sett.");
+                Console.WriteLine("Det finns ännu inga filmer tillagda, lägg till en film du sett.");
             }
             else
             {
-                // läs in textfilen som array, loopa igenom och lägg till ett index. 
+                // läs in textfilen som array, loopa igenom och lägg till ett index.  en if om txt-filen finns men inget innehåll.
                 string[] movies = File.ReadAllLines(filePath);
                 if (movies.Length == 0)
                 {

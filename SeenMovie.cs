@@ -11,17 +11,18 @@ namespace MovieProject
         //hämta textfil att spara filmerna i 
         string filePath = "seenMovies.txt";
 
-        public void AddSeenMovie(string title, int grade, string review)
+        public void AddSeenMovie(string title, int grade, string rewatch, string review )
         {
             var seenMovie = new SeenMoviesClass();
-
-            if(title == "" || grade < 0 || grade > 5 || review == "" )
+         
+            // inga tomma fält
+            if(title == "" || grade < 0 || grade > 5 || review == "" || rewatch == "")
             {
                 Console.WriteLine("Ej tillåtet att addera tomma inlägg, eller betyg över 5");
                
             } else
             {
-                seenMovie.SeenList.Add(new SeenMoviesClass { Title = title, Grade = grade, Review = review });
+                seenMovie.SeenList.Add(new SeenMoviesClass { Title = title, Grade = grade, Review = review, Rewatch = rewatch });
                 Console.WriteLine("Film: " + title + " är tillagd.");
                 // skapa fil om den inte finns och skriv ett meddelande till konsolen.
                 if (!File.Exists(filePath))
@@ -36,7 +37,7 @@ namespace MovieProject
                 //lägg till den nya filmen i txt-filen.
                 using (StreamWriter sw = File.AppendText(filePath))
                 {
-                    sw.WriteLine("Film: "  + title + " - " + "Betyg:" + grade + "/5" + " - " + "Recenssion: " + review + "|");
+                    sw.WriteLine("Film: "  + title + " - " + "Betyg:" + grade + "/5" + " - " + "Titta om?:" + rewatch + " - " + "Recenssion: " + review + "|");
                     sw.Close();
                 }
             }

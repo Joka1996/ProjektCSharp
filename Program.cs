@@ -61,10 +61,12 @@ namespace MovieProject
                             Console.WriteLine("Ditt betyg 1-5:");
                             //konventera till int
                             var grade = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("Titta om? ja/nej");
+                            var rewatch = Console.ReadLine();
                             Console.WriteLine("Recenssion:");
                             var review = Console.ReadLine();
                             //skicka till klassen SeenMovie och funktionen AddSeenMovie
-                            seenMovie.AddSeenMovie(title, grade, review);
+                            seenMovie.AddSeenMovie(title, grade, rewatch, review);
                             UserOptions();
                             break;
                         //Läs ut alla sedda filmer.
@@ -75,7 +77,7 @@ namespace MovieProject
                             break;
                         //sök efter sedd film
                         case "3":
-                            Console.WriteLine("Ange en sökfras från filmens titel");
+                            Console.WriteLine("Ange sökfras ex titel:");
                             var searchPhrase = Console.ReadLine();
                             seenMovie.SearchForSeenMovie(searchPhrase);
                             break;
@@ -133,7 +135,7 @@ namespace MovieProject
                             newMovie.ReadNewMovies();
                             break;
                         case "3":
-                            Console.WriteLine("Ange filmens titel:");
+                            Console.WriteLine("Ange sökfras ex titel:");
                             var searchPhrase = Console.ReadLine();
                             newMovie.SearchForNewMovie(searchPhrase);
                             break;
@@ -179,7 +181,7 @@ namespace MovieProject
                 Console.WriteLine("Alternativ:");
                 Console.WriteLine("1.Lägg till en Film du vill se");
                 Console.WriteLine("2.Se alla filmer du vill se");
-                Console.WriteLine("3.Sök bland filmer \nSök efter TITEL. OBS Känslig för stor/liten bokstav");
+                Console.WriteLine("3.Sök bland filmer \nSök efter ex titel. OBS Känslig för stor/liten bokstav");
                 Console.WriteLine("4.Radera film du sett efter index\n");
                 Console.WriteLine("5.Rensa konsolen\n");
 
@@ -197,7 +199,7 @@ namespace MovieProject
                 Console.WriteLine("Alternativ:");
                 Console.WriteLine("1.Lägg till en Film du sett");
                 Console.WriteLine("2.Visa alla filmer du sett");
-                Console.WriteLine("3.Sök bland filmer \nSök efter TITEL. OBS Känslig för stor/liten bokstav");
+                Console.WriteLine("3.Sök bland filmer \nSök efter ex titel. OBS Känslig för stor/liten bokstav");
                 Console.WriteLine("4.Radera film du sett efter index\n");
 
                 Console.WriteLine("5.Rensa konsolen\n");

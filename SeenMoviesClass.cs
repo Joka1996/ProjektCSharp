@@ -11,7 +11,11 @@ namespace MovieProject
 
         public int Grade { get; set; }
 
+        public string Rewatch { get; set; }
+
         public string Review { get; set; }
+
+
         public List<SeenMoviesClass> SeenList = new List<SeenMoviesClass>();
     }
 }
