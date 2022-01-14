@@ -144,6 +144,7 @@ namespace MovieProject
                             var delete = Convert.ToInt32( Console.ReadLine());
                             //skicka till klassen
                             newMovie.DeleteNewMovie(delete);
+                            UserOptionsNew();
                             break;
                         case "5":
                             Console.Clear();
