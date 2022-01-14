@@ -123,7 +123,7 @@ namespace MovieProject
                         filterd.Add(movie);
                         //skriv ut den nya listan i konsolen
                         Console.WriteLine("Resultat: " + string.Join(",", filterd) + "\n");
-                        Console.WriteLine("Inget resultat eller för många? Gör en specifikare sökning.\n");
+                        Console.WriteLine("Inget resultat? Gör en specifikare sökning.\n");
                         testWasTrue = true;
                         break;
                     }

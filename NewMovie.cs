@@ -111,7 +111,7 @@ namespace MovieProject
                     if (movie.Contains(searchPhrase))
                     {
                         Console.WriteLine($"Resultat: {movie}\n");
-                        Console.WriteLine("Inget resultat eller för många? Gör en specifikare sökning.\n");
+                        Console.WriteLine("Inget resultat? Gör en specifikare sökning.\n");
                         testWasTrue = true;
                         break;
                     }
